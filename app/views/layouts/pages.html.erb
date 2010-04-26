@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title><%= PC_CONF[:site][:title] %> - PC_CONF[:site][:dexcription]</title> 
+  <title><%= PC_CONF[:site][:title] %> - <%= PC_CONF[:site][:description] %></title> 
   <%= auto_discovery_link_tag(:rss, {:action => "redirect_to_feedburner"}, {:title => PC_CONF[:site][:title]}) %>
 
   <link rel="stylesheet" href="/mandigo/style.css" type="text/css" media="screen" /> 
