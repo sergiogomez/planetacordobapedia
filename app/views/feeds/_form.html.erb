@@ -1,0 +1,33 @@
+<% form_for(@feed) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title, t(:title) %><br />
+    <%= f.text_field :title, :class => "input-text", :size => 100 %>
+  </p>
+  <p>
+    <%= f.label :url, t(:url) %><br />
+    <%= f.text_field :url, :class => "input-text", :size => 100 %>
+  </p>
+  <p>
+    <%= f.label :feed_url, t(:feed_url) %><br />
+    <%= f.text_field :feed_url, :class => "input-text", :size => 100 %>
+  </p>
+  <p>
+    <%= f.label :name, t(:name) %><br />
+    <%= f.text_field :name, :class => "input-text", :size => 100 %>
+  </p>
+  <p>
+    <%= f.label :email, t(:email) %><br />
+    <%= f.text_field :email, :class => "input-text", :size => 100 %>
+  </p>
+  <p>
+    <%= f.radio_button :approved, 0 %>
+    <%= f.label :approved_0, t(:pending) %>
+    <%= f.radio_button :approved, 1 %>
+    <%= f.label :approved_1, t(:approved) %>
+  </p>
+  <p>
+    <%= f.submit t(:save) %>
+  </p>
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Añade tu blog</h1>
+
+<% form_for(@feed) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, Feed.human_attribute_name(:name) %><br />
+    <%= f.text_field :name, :size => 100 %>
+  </p>
+  <p>
+    <%= f.label :url, Feed.human_attribute_name(:url) %><br />
+    <%= f.text_field :url, :size => 100 %>
+  </p>
+  <p>
+    <%= f.label :feed_url, "#{Feed.human_attribute_name(:feed_url)} (si la dejas en blanco intentaremos averiguarla)" %><br />
+    <%= f.text_field :feed_url, :size => 100 %>
+  </p>
+  <p>
+    <%= f.label :email, Feed.human_attribute_name(:email) %><br />
+    <%= f.text_field :email, :size => 100 %>
+  </p>
+  <p>
+    <%= f.submit 'Enviar solicitud', :name => :add %>
+  </p>
+<% end %>

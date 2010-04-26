@@ -1,0 +1,54 @@
+<h1><%= @feed.title.nil? ? "<em>Sin título</em>" : @feed.title %></h1>
+
+<%= link_to 'Editar', edit_feed_path(@feed) %> |
+<% if @feed.is_approved? -%>
+<%= link_to 'Sincronizar', fetch_feed_path(@feed) %> |
+<% end -%>
+<%= link_to 'Eliminar', @feed, :confirm => '¿Seguro?', :method => :delete %>
+
+<dl>
+  <dt>URL</dt>
+  <dd><%= link_to @feed.url, @feed.url %></dd>
+
+  <dt>URL del feed</dt>
+  <dd><%= link_to @feed.feed_url, @feed.feed_url %> <sup><%= link_to 'Validar', "http://validator.w3.org/feed/check.cgi?url=" + @feed.feed_url %></sup></dd>
+
+  <dt>Nombre del autor</dt>
+  <dd><%=h @feed.name %> <sup><%= link_to @feed.email, "mailto:#{@feed.email}" %></sup></dd>
+
+  <% if !@feed.last_fetched.nil? -%>
+  <dt>Última sincronización</dt>
+  <dd><%= l(@feed.last_fetched, :format => :shorter) %></dd>
+  <% end -%>
+
+  <% if !@feed.last_error.nil? -%>
+  <dt>Errores de sincronización</dt>
+  <dd><%= @feed.status %></dd>
+
+  <dt>Último error</dt>
+  <dd><%= @feed.last_error %></dd>
+  <% end -%>
+
+</dl>
+
+<% if @entries.size > 0 -%>
+
+<h2>Todos sus posts</h2>
+<table>
+  <tr>
+    <th>Título</th>
+    <th>Publicado</th>
+    <th colspan="3">Acciones</th>
+  </tr>
+<% @entries.each do |entry| -%>
+  <tr class="<%= cycle("nobg","bg") %>">
+    <td><%= link_to entry.title, entry.url %></td>
+    <td><%=h l(entry.published, :format => :shorter) %></td>
+    <td><%= link_to 'Ver', entry %></td>
+    <td><%= link_to 'Editar', edit_entry_path(entry) %></td>
+    <td><%= link_to 'Eliminar', entry, :confirm => '¿Seguro?', :method => :delete %></td>
+  </tr>
+<% end -%>
+</table>
+
+<% end -%>

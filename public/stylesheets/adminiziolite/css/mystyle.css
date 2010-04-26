@@ -1,0 +1,19 @@
+/* WRITE YOUR CSS CODE HERE */
+
+#content table {
+  margin: 10px 0;
+  width: 100%;
+}
+
+#content table{
+  border: 0;
+  padding: 0;
+}
+
+#content table tr.error td {
+  background: #ffff99;
+}
+
+#content table th a {
+  color: #fff;
+}

@@ -1,0 +1,24 @@
+<h1>Blogs pendientes de aprobar</h1>
+
+<table>
+  <tr>
+    <th><%= sort_link 'Blog', :title %></th>
+    <th><%= sort_link 'Fecha de solicitud', :created_at %></th>
+    <th>Feed</th>
+    <th colspan="4">Acciones</th>
+  </tr>
+
+<% @feeds.each do |feed| %>
+  <tr>
+    <td><%= link_to feed.title, feed.url %></td>
+    <td><%= l(feed.created_at, :format => :shorter) %></td>
+    <td><%= link_to feed.feed_url, feed.feed_url %> <sup><%= link_to 'Validar', "http://validator.w3.org/feed/check.cgi?url=" + feed.feed_url %></sup></td>
+    <td><%= link_to 'Ver', feed %></td>
+    <td><%= link_to 'Editar', edit_feed_path(feed) %></td>
+    <td><%= link_to 'Aprobar', approve_feed_path(feed), :method => :put %></td>
+    <td><%= link_to 'Eliminar', feed, :confirm => '¿Seguro?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= render :partial => "shared/pagination", :locals => { :records => @feeds }%>

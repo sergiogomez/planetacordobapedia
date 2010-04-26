@@ -1,0 +1,35 @@
+<% @entries.each do |entry| -%>
+  <div class="post">
+    <div class="postinfo">
+      <div class="datestamp">
+        <div>
+          <span class="cal1 cal1x"><%= entry.published.strftime("%b") %></span>
+          <span class="cal2"><%= entry.published.day %></span>
+          <span class="cal3"><%= entry.published.year %></span>
+        </div>
+      </div>
+      <h3 class="posttitle"><%= link_to entry.title, entry.url %></h3>
+      <small><%= link_to entry.feed.title, entry.feed.url %></small>
+    </div>
+    <div class="entry">
+      <table>
+        <tr>
+          <td>
+            <% if entry.content.nil? -%>
+            <div class="entry_summary">
+              <%= entry.summary %>
+            </div>
+            <% end -%>
+            <div class="entry_content">
+              <%= entry.content %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p class="clear"></p>
+  </div>
+    </div>
+    <% end -%>
+    <%= will_paginate @entries, :previous_label => "&laquo; Entradas Previas", :next_label => "Entradas Posteriores &raquo;", :page_links => false %>
+  </div>

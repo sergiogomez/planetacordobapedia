@@ -1,0 +1,24 @@
+# Planeta Cordobapedia config file.
+# Copy this file as config/planetacordobapedia.yml and change it to configure your planetoid
+# You can have different environments if you like, for production, staging or testing
+
+development: &development
+    
+  :admin:
+    :login: admin
+    :password: wadus
+    :hash_password: false
+
+  :site:
+    :title: planeta.Cordobapedia.org
+    :url: http://planeta.cordobapedia.org/
+    :description: El agregador de los blogs cordobeses
+  
+  :google:
+    :analytics:
+
+test:
+    <<: *development
+    
+production:
+    <<: *development

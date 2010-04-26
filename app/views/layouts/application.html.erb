@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-language" content="es" />
+  <meta name="robots" content="noindex,nofollow" />
+  <%= stylesheet_link_tag "adminiziolite/css/reset", :media => "screen, projection" %><!-- RESET -->
+  <%= stylesheet_link_tag "adminiziolite/css/main", :media => "screen, projection" %><!-- MAIN STYLE SHEET -->
+  <%= stylesheet_link_tag "adminiziolite/css/2col", :media => "screen, projection" %><!-- DEFAULT: 2 COLUMNS -->
+  <%= stylesheet_link_tag "adminiziolite/css/1col", :media => "screen, projection", :rel => "stylesheet, alternate" %><!-- ALTERNATE: 1 COLUMN -->
+  <!--[if lte IE 6]><%= stylesheet_link_tag "adminiziolite/css/main-ie6", :media => "screen, projection" %><![endif]--><!-- MSIE6 -->
+  <%= stylesheet_link_tag "adminiziolite/css/style", :media => "screen, projection"  %><!-- GRAPHIC THEME -->
+  <%= stylesheet_link_tag "adminiziolite/css/mystyle", :media => "screen, projection"  %><!-- WRITE YOUR CSS CODE HERE -->
+  <%= stylesheet_link_tag "will_paginate/pagination", :media => "screen, projection"  %>
+  <%= javascript_include_tag "adminiziolite/js/jquery" %>
+  <%= javascript_include_tag "adminiziolite/js/switcher" %>
+  <%= javascript_include_tag "adminiziolite/js/toggle" %>
+  <%= javascript_include_tag "adminiziolite/js/ui.core" %>
+  <%= javascript_include_tag "adminiziolite/js/ui.tabs" %>
+  <script type="text/javascript">
+  $(document).ready(function(){
+          $(".tabs > ul").tabs();
+  });
+  </script>
+  <title>Administración :: <%= PC_CONF[:site][:title] %></title>
+</head>
+<body>
+
+<div id="main">
+
+	<!-- Tray -->
+	<div id="tray" class="box">
+		<p class="f-left box"><strong><%= link_to PC_CONF[:site][:title], root_path %></strong></p>
+		<p class="f-right"><%= link_to "Desconectar", logout_path unless is_login? %></p>
+	</div> <!--  /tray -->
+	<hr class="noscreen" />
+	<% unless is_login? -%>
+	<!-- Menu -->
+	<div id="menu" class="box">
+
+		<!--<ul class="box f-right">
+			<li><a href="#"><span><strong>Visit Site &raquo;</strong></span></a></li>
+		</ul>-->
+
+		<ul class="box">
+      <%= menu_item "Blogs", "feeds" %>
+      <%= menu_item "Posts", "entries" %>
+		</ul>
+
+	</div> <!-- /menu -->
+	<% end -%>
+
+	<hr class="noscreen" />
+
+	<!-- Columns -->
+	<div id="cols" class="box">
+		<!-- Aside (Left Column) -->
+		<div id="aside" class="box">
+			<div class="padding box">
+			</div> <!-- /padding -->
+			<% unless is_login? -%>
+			<ul class="box">
+        <%= menu_item "Blogs activos", "feeds", "index", false %>
+        <%= menu_item "Blogs pendientes", "feeds", "pending", false %>
+        <%= menu_item "Nuevo blog", "feeds", "new", false %>
+        <%= menu_item "Todos los posts", "entries", "index", false %>
+      </ul>
+      <% end -%>
+		</div> <!-- /aside -->
+		<hr class="noscreen" />
+		<!-- Content (Right Column) -->
+		<div id="content" class="box">
+                  <% unless flash[:notice].nil? %>
+                    <p class="msg done"><%= flash[:notice] %></p>
+                  <% end %>
+                  <% unless flash[:warning].nil? %>
+                    <p class="msg warning"><%= flash[:warning] %></p>
+                  <% end %>
+                  <% unless flash[:error].nil? %>
+                    <p class="msg error"><%= flash[:error] %></p>
+                  <% end %>
+                  <%= yield %>
+		</div> <!-- /content -->
+	</div> <!-- /cols -->
+	<hr class="noscreen" />
+	<!-- Footer -->
+	<div id="footer" class="box">
+          <p class="f-left"><%= link_to "sergiogomez", "http://github.com/sergiogomez/" %></p>
+          <p class="f-right">templates by <a href="http://www.adminizio.com/">Adminizio</a></p>
+	</div> <!-- /footer -->
+</div> <!-- /main -->
+</body>
+</html>

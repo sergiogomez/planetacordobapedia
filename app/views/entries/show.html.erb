@@ -1,0 +1,22 @@
+<h1><%= @entry.feed.title.nil? ? "<em>Blog sin título</em>" : @entry.feed.title %> :: <%= @entry.title.nil? ? "<em>Sin título</em>" : @entry.title %></h1>
+<%= link_to 'Editar', edit_entry_path(@entry) %> |
+<%= link_to 'Eliminar', @entry, :confirm => '¿Seguro?', :method => :delete %>
+
+<dl>
+  <dt>URL</dt>
+  <dd><%= link_to @entry.url, @entry.url %></dd>
+  
+  <dt>Fecha de publicación</dt>
+  <dd><%=h l(@entry.published, :format => :shorter) %></dd>
+</dl>
+
+<table><tr><td>
+<% if !@entry.summary.nil? and @entry.content.nil? -%>
+  <%= @entry.summary %>
+<% end -%>
+
+<% if !@entry.content.nil? -%>
+  <%= @entry.content %>
+<% end -%>
+</td></tr></table>
+

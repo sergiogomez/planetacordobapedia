@@ -1,0 +1,9 @@
+# http://github.com/mislav/will_paginate/issues/#issue/10
+es:
+  will_paginate:
+    entry: "registros"
+    found:
+      zero: "Sin registros"
+      one: "<strong>1</strong> registros"
+      other: "<strong>{{size}}</strong> registros"
+    display: "Registros del <strong>{{from}}</strong> al <strong>{{to}}</strong> de un total de <strong>{{total}}</strong>"

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= PC_CONF[:site][:title] %> - PC_CONF[:site][:dexcription]</title> 
+  <%= auto_discovery_link_tag(:rss, {:action => "redirect_to_feedburner"}, {:title => PC_CONF[:site][:title]}) %>
+
+  <link rel="stylesheet" href="/mandigo/style.css" type="text/css" media="screen" /> 
+  <link rel="stylesheet" href="/mandigo/schemes/teal/scheme.css" type="text/css" media="screen" /> 
+
+  <script type="text/javascript" src="/mandigo/js/jquery.js"></script> 
+  <script type="text/javascript" src="/mandigo/js/jquery.ifixpng.js"></script> 
+  <script type="text/javascript">jQuery.noConflict();</script> 
+
+  <style type="text/css"> 
+    .entry img, .entry embed, .entry object { max-width: 658px; width: expression(this.clientWidth > 658 ? 658 : true); }
+    .entry img { height: auto; }
+  </style>
+</head>
+<body>
+
+<div id="page"> 
+ 
+<div id="header" class="png"> 
+	<div id="headerimg"> 
+		<h1 class="blogname" id="blogname"><%= link_to PC_CONF[:site][:title], root_path %></h1> 
+		<h6 class="blogdesc" id="blogdesc"><%= PC_CONF[:site][:description] %></h6> 
+ 
+		<ul class="pages png"> 
+			<li class="page_item"><%= link_to "Inicio", root_path %></li> 
+			<li class="page_item"><%= link_to "Acerca de", :controller => "pages", :action => "show", :id => "acerca-de" %></li> 
+			<li class="page_item"><%= link_to "Añade tu blog", add_blog_path %></li> 
+			<li class="page_item"><%= link_to "Colaboraciones", :controller => "pages", :action => "show", :id => "colaboraciones" %></li> 
+		</ul> 
+	
+	</div> 
+	
+</div> 
+ 
+<div id="main" class="png"> 
+<table> 
+<tr> 
+	<td id="content" class="narrowcolumn"> 
+    <% if flash[:notice] -%>
+      <p style="color: green"><%= flash[:notice] %></p>
+    <% end -%>
+<%= yield %>
+	</td>
+	<td id="sidebar1">
+	  <ul class="sidebars">
+		  <div style="text-align: center;"> 
+<style> 
+  .cloud2 {font-size: 1.1em;}
+  .cloud3 {font-size: 1.2em;}
+  .cloud4 {font-size: 1.3em;}
+  .cloud5 {font-size: 1.4em;}
+  .cloud6 {font-size: 1.5em;}
+</style>
+<% @feeds.sort{rand(rand(2)*3) -1}.each do |feed| -%>
+  <span class="cloud<%= 1 + rand(5) %>"><%= link_to feed.title, feed.url %></span>
+<% end -%>
+      </div>
+    </ul>
+  </td>
+</tr> 
+</table> 
+</div> 
+ 
+<div id="footer" class="png"> 
+	<p> 
+		Planeta Cordobapedia on Rails (beta), <a href="http://www.onehertz.com/portfolio/wordpress/" target="_blank" title="WordPress themes">Mandigo theme</a> by tom. <%= link_to "<img src=\"/mandigo/schemes/teal/images/rss_s.gif\" alt=\"RSS\" /> Entradas (RSS)", :controller => :pages, :action => :redirect_to_feedburner, :only_path => false %>.
+	</p> 
+</div> 
+</div> 
+<%= render :partial => 'shared/google_analytics' if RAILS_ENV=='production' && !PC_CONF[:google][:analytics].to_s.strip.blank? -%>
+</body> 
+</html>

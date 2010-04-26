@@ -1,0 +1,12 @@
+= Planeta Cordobapedia
+
+Planeta Cordobapedia es una adaptación libre y a medida de Planetoid (http://github.com/jaimeiniesta/planetoid), una aplicación Ruby on Rails de Jaime Iniesta (http://jaimeiniesta.com/), para gestionar el Planeta Cordobapedia (http://planeta.cordobapedia.org/), un agregador de blogs cordobeses.
+
+Los objetivos de esta pequeña aplicación son:
+
+* Usar una aplicación ligera para la gestión habitual del Planeta (hasta ahora venía usando una instalación bastante pesada de WordPress con un plugin que no terminaba de ir del todo fino).
+* Aprender y practicar Ruby on Rails (es mi primer pet project en Rails).
+
+= Licencia (la misma que Planetoid)
+
+This app is MIT licensed, wich basically means you can do whatever you want with it, and there's no warranty of any kind. Read the MIT-LICENSE file to get the details.

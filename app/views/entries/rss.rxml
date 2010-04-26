@@ -1,0 +1,21 @@
+xml.instruct! :xml, :version => "1.0" 
+xml.rss :version => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+  xml.channel do
+    xml.title "Planeta Cordobapedia"
+    xml.description "El agregador de blog cordobeses"
+    xml.link root_url
+    
+    for entry in @entries
+      xml.item do
+        xml.title "#{entry.feed.title} :: #{entry.title}"
+        xml.description { xml.cdata!(entry.summary) } if entry.summary
+        xml.description { xml.cdata!(entry.content) } if entry.content
+        #xml.tag!("content:encoded") { xml.cdata!(entry.summary) } if entry.summary
+        #xml.tag!("content:encoded") { xml.cdata!(entry.content) } if entry.content
+        xml.pubDate entry.created_at.to_s(:rfc822)
+        xml.link entry.url
+        xml.guid entry.url
+      end
+    end
+  end
+end

@@ -1,0 +1,19 @@
+es:
+  title: "Título"
+  url: "URL"
+  feed_url: "URL del feed"
+  name: "Nombre del autor"
+  email: "Correo electrónico"
+  approved: "Aprobado"
+  pending: "Pendiente"
+  save: "Guardar"
+  activerecord:
+    models:
+      feed: "blog"
+      entry: "post"
+    attributes:
+      feed:
+        name: "Tu nombre"
+        url: "La dirección de tu blog"
+        email: "Tu correo"
+        feed_url: "La dirección de tu feed"

@@ -1,0 +1,10 @@
+<h2>Zona privada</h2>
+<% form_tag session_path do -%>
+	<p><strong><%= label_tag :login, "Usuario" %></strong><br />
+	<%= text_field_tag :login %></p>
+	<p><strong><%= label_tag :password, "Contraseña" %></strong><br />
+	<%= password_field_tag :password %></p>
+	<p>
+  	<%= submit_tag "Entrar" %>  
+	</p>
+<% end -%>
