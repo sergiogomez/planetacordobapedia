@@ -39,4 +39,10 @@ namespace :pc do
       end
     end
   end
+  desc "Clean old entries"
+  task :clean => :environment do |t|
+    puts "Cleaning old entries, please wait..."
+    Entry.clean_old!
+    puts "Done!"
+  end
 end
